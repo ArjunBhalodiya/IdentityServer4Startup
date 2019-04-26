@@ -1,0 +1,54 @@
+{
+  "apiResources": [
+    {
+      "name": "api1",
+      "displayName": "My API"
+    }
+  ],
+  "identityResources": [
+    "OpenId",
+    "Profile"
+  ],
+  "clients": [
+    {
+      "clientId": "site.client.cred.dev",
+      "clientSecrets": "secret",
+      "allowedScopes": [
+        "api1"
+      ],
+      "allowedGrantTypes": "client_credentials",
+      "allowOfflineAccess": false,
+      "requirePkce": false,
+      "requireClientSecret": false
+    },
+    {
+      "clientId": "site.implicit.dev",
+      "allowedScopes": [
+        "OpenId",
+        "Profile"
+      ],
+      "allowedGrantTypes": "implicit",
+      "redirectUris": [
+        "http://localhost:5002/signin-oidc"
+      ],
+      "postLogoutRedirectUris": [
+        "http://localhost:5002/signout-callback-oidc"
+      ],
+      "allowOfflineAccess": false,
+      "requirePkce": false,
+      "requireClientSecret": false
+    },
+    {
+      "clientId": "site.password.dev",
+      "clientSecrets": "secret",
+      "allowedScopes": [
+        "OpenId",
+        "Profile"
+      ],
+      "allowedGrantTypes": "password",
+      "allowOfflineAccess": false,
+      "requirePkce": false,
+      "requireClientSecret": false
+    }
+  ]
+}
