@@ -23,7 +23,7 @@ namespace Test.IdentityServer.App_Config
 
             if (!File.Exists(path))
                 throw new Exception($"IdentityServer configuration file not found at: {path}");
-            
+
             var json = File.ReadAllText(path);
 
             try
@@ -55,7 +55,7 @@ namespace Test.IdentityServer.App_Config
                     ClientSecrets = { new Secret(client.ClientSecrets.Sha256()) },
 
                     AllowedScopes = client.AllowedScopes ?? new List<string>(),
-                    AllowedGrantTypes = GrantTypes.ClientCredentials ?? new List<string>(),
+                    AllowedGrantTypes = client.GetClientType(),
 
                     RedirectUris = client.RedirectUris ?? new List<string>(),
                     PostLogoutRedirectUris = client.PostLogoutRedirectUris ?? new List<string>(),
