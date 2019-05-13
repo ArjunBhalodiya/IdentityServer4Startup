@@ -7,6 +7,7 @@ namespace Test.IdentityServer.Repositories
     {
         public bool ValidateUser(string username, string password)
         {
+            return true;
             throw new NotImplementedException();
         }
 
@@ -17,6 +18,12 @@ namespace Test.IdentityServer.Repositories
 
         public IdentityUserModel FindByUsername(string username)
         {
+            return new IdentityUserModel
+            {
+                UserId = "bb74e8fa-ce2f-49c7-a615-5ccd24b9f4d4",
+                EmailAddress = "adbhalodiya@gmail.com",
+                Username = "ArjunBhalodiya"
+            };
             throw new NotImplementedException();
         }
     }

@@ -24,8 +24,7 @@
     {
       "clientId": "site.implicit.dev",
       "allowedScopes": [
-        "OpenId",
-        "Profile"
+        "api1"
       ],
       "allowedGrantTypes": "implicit",
       "redirectUris": [
@@ -42,8 +41,7 @@
       "clientId": "site.password.dev",
       "clientSecrets": "secret",
       "allowedScopes": [
-        "OpenId",
-        "Profile"
+        "api1"
       ],
       "allowedGrantTypes": "password",
       "allowOfflineAccess": false,

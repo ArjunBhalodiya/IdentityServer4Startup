@@ -1,17 +1,30 @@
-﻿using IdentityModel.Client;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using IdentityModel.Client;
+using Newtonsoft.Json.Linq;
 
-namespace Test.IdentityServer.Test
+namespace Test.IdentityServer.Test1
 {
     class Program
     {
         private static async Task Main()
         {
-            await new ClientCredentialsToken().GetToken("", null).ConfigureAwait(false);
-            await new ResourceOwnerToken().GetToken("", null).ConfigureAwait(false);
+            await new ClientCredentialsToken().GetToken("http://localhost:30967", new ClientCredentialsTokenRequest
+            {
+                ClientId = "site.client.cred.dev",
+                ClientSecret = "secret",
+                Scope = "api1"
+            }).ConfigureAwait(false);
+
+            await new ResourceOwnerToken().GetToken("http://localhost:30967", new PasswordTokenRequest
+            {
+                ClientId = "site.password.dev",
+                ClientSecret = "secret",
+                UserName = "ArjunBhaldiya",
+                Password = "Password",
+                Scope = "api1"
+            }).ConfigureAwait(false);
         }
     }
 
@@ -28,6 +41,7 @@ namespace Test.IdentityServer.Test
                 return;
             }
 
+            request.Address = disco.TokenEndpoint;
             var tokenResponse = await client.RequestClientCredentialsTokenAsync(request);
 
             if (tokenResponse.IsError)
@@ -68,6 +82,7 @@ namespace Test.IdentityServer.Test
                 return;
             }
 
+            request.Address = disco.TokenEndpoint;
             var tokenResponse = await client.RequestPasswordTokenAsync(request);
 
             if (tokenResponse.IsError)
