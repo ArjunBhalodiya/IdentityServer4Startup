@@ -14,7 +14,7 @@ namespace Test.IdentityServer.Test1
             {
                 ClientId = "site.client.cred.dev",
                 ClientSecret = "secret",
-                Scope = "api1"
+                Scope = "communication.api"
             }).ConfigureAwait(false);
 
             await new ResourceOwnerToken().GetToken("http://localhost:30967", new PasswordTokenRequest
@@ -23,7 +23,7 @@ namespace Test.IdentityServer.Test1
                 ClientSecret = "secret",
                 UserName = "ArjunBhaldiya",
                 Password = "Password",
-                Scope = "api1"
+                Scope = "account.api"
             }).ConfigureAwait(false);
         }
     }
@@ -52,20 +52,6 @@ namespace Test.IdentityServer.Test1
 
             Console.WriteLine(tokenResponse.Json);
             Console.WriteLine("\n\n");
-
-            var apiClient = new HttpClient();
-            apiClient.SetBearerToken(tokenResponse.AccessToken);
-
-            var response = await apiClient.GetAsync($"{baseUrl}/identity");
-            if (!response.IsSuccessStatusCode)
-            {
-                Console.WriteLine(response.StatusCode);
-            }
-            else
-            {
-                var content = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(JArray.Parse(content));
-            }
         }
     }
 
@@ -93,20 +79,6 @@ namespace Test.IdentityServer.Test1
 
             Console.WriteLine(tokenResponse.Json);
             Console.WriteLine("\n\n");
-
-            var apiClient = new HttpClient();
-            apiClient.SetBearerToken(tokenResponse.AccessToken);
-
-            var response = await apiClient.GetAsync($"{baseUrl}/identity");
-            if (!response.IsSuccessStatusCode)
-            {
-                Console.WriteLine(response.StatusCode);
-            }
-            else
-            {
-                var content = response.Content.ReadAsStringAsync().Result;
-                Console.WriteLine(JArray.Parse(content));
-            }
         }
     }
 }

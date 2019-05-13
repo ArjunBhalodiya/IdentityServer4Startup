@@ -1,8 +1,12 @@
 {
   "apiResources": [
     {
-      "name": "api1",
-      "displayName": "My API"
+      "name": "communication.api",
+      "displayName": "Communication API"
+    },
+    {
+      "name": "account.api",
+      "displayName": "Account API"
     }
   ],
   "identityResources": [
@@ -14,7 +18,7 @@
       "clientId": "site.client.cred.dev",
       "clientSecrets": "secret",
       "allowedScopes": [
-        "api1"
+        "communication.api"
       ],
       "allowedGrantTypes": "client_credentials",
       "allowOfflineAccess": false,
@@ -24,7 +28,8 @@
     {
       "clientId": "site.implicit.dev",
       "allowedScopes": [
-        "api1"
+        "communication.api",
+        "account.api"
       ],
       "allowedGrantTypes": "implicit",
       "redirectUris": [
@@ -41,7 +46,7 @@
       "clientId": "site.password.dev",
       "clientSecrets": "secret",
       "allowedScopes": [
-        "api1"
+        "account.api"
       ],
       "allowedGrantTypes": "password",
       "allowOfflineAccess": false,
