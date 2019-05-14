@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Test.IdentityServer.Utility.Attribute;
+using Test.IdentityServer.Utility.ControllerExtention;
 
 namespace Test.Identity.Api.Resource.Controllers
 {
     [Route("communication")]
     [ApiController]
     [IdentityAuthorization("communication.api")]
-    public class CommunicationController : Controller
+    public class CommunicationController : BaseController
     {
         [HttpGet]
         public ActionResult<string> Get()

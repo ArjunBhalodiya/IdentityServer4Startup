@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.IdentityServer", "Test.IdentityServer\Test.IdentityServer.csproj", "{8CBAE3D2-0AC6-4683-BBF8-43C80A4676AA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.IdentityServer.Test", "Test.IdentityServer.Test\Test.IdentityServer.Test.csproj", "{8383F9DC-DFCE-42ED-8B70-4DC535616D64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.IdentityServer.Test", "Test\Test.IdentityServer.Test\Test.IdentityServer.Test.csproj", "{8383F9DC-DFCE-42ED-8B70-4DC535616D64}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.Identity.Api.Resource", "Test.Identity.Api.Resource\Test.Identity.Api.Resource.csproj", "{E738E5DD-0D5F-40C2-ADC9-2ABEC4F60A03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.Identity.Api.Resource", "Test\Test.Identity.Api.Resource\Test.Identity.Api.Resource.csproj", "{E738E5DD-0D5F-40C2-ADC9-2ABEC4F60A03}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{84255DB5-34EA-4E5F-B0C8-A1AC3B4C6F96}"
 EndProject

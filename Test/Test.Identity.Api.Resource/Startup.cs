@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Test.Identity.Api.Resource.Configuration;
+using Test.IdentityServer.Utility;
 using Test.IdentityServer.Utility.Middleware;
 
 namespace Test.Identity.Api.Resource
@@ -39,9 +41,12 @@ namespace Test.Identity.Api.Resource
             }
 
             app.UseIdentityMiddleware();
+            app.UseIdentityConfiguration(new ApiResourceServicesMetadata
+            {
+                UserManagement = "http://localhost:30967"
+            });
 
             app.UseAuthentication();
-
             app.UseMvc();
         }
     }
