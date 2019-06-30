@@ -120,7 +120,7 @@ namespace Test.IdentityServer.App_Config
                         IdentityResources.Add(new IdentityResources.Profile());
                         break;
                     default:
-                        break;
+                        throw new NotSupportedException();
                 }
             }
         }
