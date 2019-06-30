@@ -65,7 +65,7 @@ namespace Test.IdentityServer.Utility.Attribute
             return false;
         }
 
-        private void HandleUnauthorizedRequest(ActionExecutingContext context)
+        private static void HandleUnauthorizedRequest(ActionExecutingContext context)
         {
             if (context.HttpContext.User.Claims == null || !context.HttpContext.User.Identity.IsAuthenticated)
             {

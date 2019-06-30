@@ -5,18 +5,18 @@ using IdentityModel.Client;
 
 namespace Test.IdentityServer.Test1
 {
-    class Program
+    public static class Program
     {
         public static async Task Main()
         {
-            await new ClientCredentialsToken().GetToken("http://localhost:30967", new ClientCredentialsTokenRequest
+            await ClientCredentialsToken.GetToken("http://localhost:30967", new ClientCredentialsTokenRequest
             {
                 ClientId = "site.client.cred.dev",
                 ClientSecret = "secret",
                 Scope = "equitrix.usermanagement.api"
             }).ConfigureAwait(false);
 
-            await new ResourceOwnerToken().GetToken("http://localhost:30967", new PasswordTokenRequest
+            await ResourceOwnerToken.GetToken("http://localhost:30967", new PasswordTokenRequest
             {
                 ClientId = "site.password.dev",
                 ClientSecret = "secret",
@@ -27,9 +27,9 @@ namespace Test.IdentityServer.Test1
         }
     }
 
-    internal class ClientCredentialsToken
+    internal static class ClientCredentialsToken
     {
-        internal async Task GetToken(string baseUrl, ClientCredentialsTokenRequest request)
+        internal static async Task GetToken(string baseUrl, ClientCredentialsTokenRequest request)
         {
             var client = new HttpClient();
 
@@ -53,9 +53,9 @@ namespace Test.IdentityServer.Test1
         }
     }
 
-    internal class ResourceOwnerToken
+    internal static class ResourceOwnerToken
     {
-        internal async Task GetToken(string baseUrl, PasswordTokenRequest request)
+        internal static async Task GetToken(string baseUrl, PasswordTokenRequest request)
         {
             var client = new HttpClient();
 

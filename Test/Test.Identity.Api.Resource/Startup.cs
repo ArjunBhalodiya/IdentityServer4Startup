@@ -10,15 +10,18 @@ namespace Test.Identity.Api.Resource
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IHostingEnvironment environment;
+
+        public Startup(IConfiguration configuration, IHostingEnvironment environment)
         {
             Configuration = configuration;
+            this.environment = environment;
         }
 
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public static void ConfigureServices(IServiceCollection services)
         {
             services.AddAuthentication("Bearer")
                     .AddIdentityServerAuthentication(options =>
@@ -32,9 +35,9 @@ namespace Test.Identity.Api.Resource
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            if (env.IsDevelopment())
+            if (environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
