@@ -20,9 +20,11 @@ namespace Test.IdentityServer.Utility.Attribute
         public IdentityAuthorizationAttribute(string scope)
         {
             if (string.IsNullOrEmpty(scope))
+            {
                 throw new ArgumentNullException("scope");
+            }
 
-            Scopes = new string[] { scope };
+            Scopes = new[] { scope };
         }
 
         public IdentityAuthorizationAttribute(string[] scopes)
@@ -33,7 +35,9 @@ namespace Test.IdentityServer.Utility.Attribute
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             if (!ValidateScope(context))
+            {
                 throw new UnauthorizedAccessException("Invalid Scope!");
+            }
 
             base.OnActionExecuting(context);
         }
@@ -43,7 +47,9 @@ namespace Test.IdentityServer.Utility.Attribute
             HandleUnauthorizedRequest(context);
 
             if (Scopes == null)
+            {
                 return true;
+            }
 
             var principal = context.HttpContext.User as ClaimsPrincipal;
             var grantedScopes = principal.FindAll(scopeClaimType).Select(c => c.Value).ToList();
@@ -51,7 +57,9 @@ namespace Test.IdentityServer.Utility.Attribute
             foreach (var scope in Scopes)
             {
                 if (grantedScopes.Contains(scope, StringComparer.OrdinalIgnoreCase))
+                {
                     return true;
+                }
             }
 
             return false;
@@ -60,7 +68,9 @@ namespace Test.IdentityServer.Utility.Attribute
         private void HandleUnauthorizedRequest(ActionExecutingContext context)
         {
             if (context.HttpContext.User.Claims == null || !context.HttpContext.User.Identity.IsAuthenticated)
+            {
                 throw new UnauthorizedAccessException("Unauthorized!");
+            }
         }
     }
 }

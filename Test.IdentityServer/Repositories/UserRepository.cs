@@ -8,12 +8,11 @@ namespace Test.IdentityServer.Repositories
         public bool ValidateUser(string username, string password)
         {
             return true;
-            throw new NotImplementedException();
         }
 
         public IdentityUserModel FindBySubjectId(string subjectId)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public IdentityUserModel FindByUsername(string username)
@@ -24,7 +23,6 @@ namespace Test.IdentityServer.Repositories
                 EmailAddress = "adbhalodiya@gmail.com",
                 Username = "ArjunBhalodiya"
             };
-            throw new NotImplementedException();
         }
     }
 }

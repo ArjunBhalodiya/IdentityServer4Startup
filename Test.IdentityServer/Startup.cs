@@ -7,7 +7,7 @@ namespace Test.IdentityServer
 {
     public class Startup
     {
-        private IHostingEnvironment environment;
+        private readonly IHostingEnvironment environment;
 
         public Startup(IHostingEnvironment environment)
         {
@@ -32,7 +32,9 @@ namespace Test.IdentityServer
         public void Configure(IApplicationBuilder app)
         {
             if (environment.IsDevelopment())
+            {
                 app.UseDeveloperExceptionPage();
+            }
 
             // Use MVC services
             app.UseStaticFiles();

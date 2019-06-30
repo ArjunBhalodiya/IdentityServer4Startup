@@ -8,7 +8,7 @@ using Test.IdentityServer.IdentityModels;
 
 namespace Test.IdentityServer.App_Config
 {
-    public class ConfigurationBuilder
+    public static class ConfigurationBuilder
     {
         public static List<Client> Clients { get; private set; }
         public static List<ApiResource> ApiResources { get; private set; }
@@ -19,10 +19,14 @@ namespace Test.IdentityServer.App_Config
         {
             var path = Path.Combine(environment.ContentRootPath, $"identityServer.config.{environment.EnvironmentName}.json");
             if (!File.Exists(path) && environment.IsDevelopment())
+            {
                 path = Path.Combine(environment.ContentRootPath, $"identityServer.config.json");
+            }
 
             if (!File.Exists(path))
-                throw new Exception($"IdentityServer configuration file not found at: {path}");
+            {
+                throw new FileNotFoundException($"IdentityServer configuration file not found at: {path}");
+            }
 
             var json = File.ReadAllText(path);
 
@@ -35,7 +39,7 @@ namespace Test.IdentityServer.App_Config
             }
             catch (Exception ex)
             {
-                throw new Exception($"Failed to deserialize IdentityServer configuration file: {ex.Message}");
+                throw new InvalidDataException($"Failed to deserialize IdentityServer configuration file: {ex.Message}");
             }
         }
 
@@ -94,7 +98,9 @@ namespace Test.IdentityServer.App_Config
             foreach (var identityResource in config.IdentityResources)
             {
                 if (!Enum.TryParse(identityResource, out IdentityResourcesType identityResourcesType))
-                    throw new Exception($"Invalid Identity Resources Type in IdentityServer configuration.");
+                {
+                    throw new InvalidDataException($"Invalid Identity Resources Type in IdentityServer configuration.");
+                }
 
                 switch (identityResourcesType)
                 {
@@ -112,6 +118,8 @@ namespace Test.IdentityServer.App_Config
                         break;
                     case IdentityResourcesType.Profile:
                         IdentityResources.Add(new IdentityResources.Profile());
+                        break;
+                    default:
                         break;
                 }
             }

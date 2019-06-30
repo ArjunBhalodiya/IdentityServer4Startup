@@ -20,12 +20,14 @@ namespace Test.IdentityServer.Utility.ControllerExtention
             var principal = context.HttpContext.User as ClaimsPrincipal;
 
             if (principal?.Identity != null && principal.Identity.IsAuthenticated)
+            {
                 ActiveUser = Task.FromResult(PopulateIdentityUser(context.HttpContext).Result).Result;
+            }
 
             base.OnActionExecuting(context);
         }
 
-        private async Task<IdentityUser> PopulateIdentityUser(HttpContext httpContext)
+        private static async Task<IdentityUser> PopulateIdentityUser(HttpContext httpContext)
         {
             var principal = httpContext.User as ClaimsPrincipal;
             var userId = principal.FindFirst(GlobalConstants.SubjectClaim).Value;
@@ -36,15 +38,8 @@ namespace Test.IdentityServer.Utility.ControllerExtention
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 var response = await client.GetAsync($"user/{userId}").ConfigureAwait(false);
 
-                try
-                {
-                    response.EnsureSuccessStatusCode();
-                    return await response.Content.ReadAsAsync<IdentityUser>().ConfigureAwait(false);
-                }
-                catch
-                {
-                    throw;
-                }
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadAsAsync<IdentityUser>().ConfigureAwait(false);
             }
         }
     }

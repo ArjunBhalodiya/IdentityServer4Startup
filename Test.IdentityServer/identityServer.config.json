@@ -1,8 +1,8 @@
 {
   "apiResources": [
     {
-      "name": "communication.api",
-      "displayName": "Communication API"
+      "name": "equitrix.usermanagement.api",
+      "displayName": "Equitrix User Management API"
     },
     {
       "name": "account.api",
@@ -18,7 +18,7 @@
       "clientId": "site.client.cred.dev",
       "clientSecrets": "secret",
       "allowedScopes": [
-        "communication.api"
+        "equitrix.usermanagement.api"
       ],
       "allowedGrantTypes": "client_credentials",
       "allowOfflineAccess": false,
@@ -46,7 +46,7 @@
       "clientId": "site.password.dev",
       "clientSecrets": "secret",
       "allowedScopes": [
-        "account.api"
+        "equitrix.usermanagement.api"
       ],
       "allowedGrantTypes": "password",
       "allowOfflineAccess": false,

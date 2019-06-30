@@ -1,6 +1,7 @@
 ﻿using IdentityServer4.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Test.IdentityServer.IdentityModels
 {
@@ -42,7 +43,7 @@ namespace Test.IdentityServer.IdentityModels
                 case "device_flow":
                     return GrantTypes.DeviceFlow;
                 default:
-                    throw new Exception($"Invalid grant type {AllowedGrantTypes}");
+                    throw new InvalidDataException($"Invalid grant type {AllowedGrantTypes}");
             }
         }
     }

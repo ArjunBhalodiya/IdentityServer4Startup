@@ -2,19 +2,18 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using IdentityModel.Client;
-using Newtonsoft.Json.Linq;
 
 namespace Test.IdentityServer.Test1
 {
     class Program
     {
-        private static async Task Main()
+        public static async Task Main()
         {
             await new ClientCredentialsToken().GetToken("http://localhost:30967", new ClientCredentialsTokenRequest
             {
                 ClientId = "site.client.cred.dev",
                 ClientSecret = "secret",
-                Scope = "communication.api"
+                Scope = "equitrix.usermanagement.api"
             }).ConfigureAwait(false);
 
             await new ResourceOwnerToken().GetToken("http://localhost:30967", new PasswordTokenRequest
@@ -23,7 +22,7 @@ namespace Test.IdentityServer.Test1
                 ClientSecret = "secret",
                 UserName = "ArjunBhaldiya",
                 Password = "Password",
-                Scope = "account.api"
+                Scope = "equitrix.usermanagement.api"
             }).ConfigureAwait(false);
         }
     }
@@ -51,7 +50,6 @@ namespace Test.IdentityServer.Test1
             }
 
             Console.WriteLine(tokenResponse.Json);
-            Console.WriteLine("\n\n");
         }
     }
 
@@ -78,7 +76,6 @@ namespace Test.IdentityServer.Test1
             }
 
             Console.WriteLine(tokenResponse.Json);
-            Console.WriteLine("\n\n");
         }
     }
 }

@@ -1,8 +1,14 @@
 ﻿namespace Test.IdentityServer.Utility.Constant
 {
-    public class GlobalConstants
+    public static class GlobalConstants
     {
-        public const string SubjectClaim = "sub";
-        public const string HttpContextActiverUserKey = "ActiverUser";
+        public static string SubjectClaim
+        {
+            get { return "sub"; }
+        }
+        public static string HttpContextActiverUserKey
+        {
+            get { return "ActiverUser"; }
+        }
     }
 }
